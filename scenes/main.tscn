@@ -1,0 +1,124 @@
+[gd_scene load_steps=11 format=3 uid="uid://bnp6chneprcl5"]
+
+[ext_resource type="Texture2D" uid="uid://bovi3n3n2e7n3" path="res://textures/sea_bg.jpg" id="1_4ox23"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_gexpc"]
+[ext_resource type="Shader" path="res://shaders/colored_sprite.gdshader" id="1_wwv38"]
+[ext_resource type="Script" path="res://scripts/tower.gd" id="4_6uvif"]
+[ext_resource type="Texture2D" uid="uid://csi6pvvph0x2p" path="res://textures/tower.png" id="4_ecw4f"]
+[ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="6_5sx3e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_63q2e"]
+shader = ExtResource("1_wwv38")
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nek02"]
+radius = 114.0
+height = 444.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1b0lp"]
+size = Vector2(200, 1258)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bm6js"]
+bg_color = Color(0.0901961, 0.0901961, 0.0901961, 0.980392)
+
+[node name="game" type="Node2D"]
+script = ExtResource("1_gexpc")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="background" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_63q2e")
+position = Vector2(-55, -154)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_4ox23")
+
+[node name="tower" type="StaticBody2D" parent="."]
+position = Vector2(-740, 125)
+script = ExtResource("4_6uvif")
+
+[node name="sprite" type="Sprite2D" parent="tower"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_ecw4f")
+
+[node name="spawn_point" type="Marker2D" parent="tower"]
+position = Vector2(-18, -65)
+
+[node name="timer" type="Timer" parent="tower"]
+wait_time = 2.05
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tower"]
+shape = SubResource("CapsuleShape2D_nek02")
+
+[node name="enemy_spawner" type="Marker2D" parent="."]
+position = Vector2(-578, 530)
+script = ExtResource("6_5sx3e")
+spawn_min = 6.0
+spawn_max = 10.0
+
+[node name="defence_area" type="Area2D" parent="."]
+position = Vector2(-1341, -18)
+scale = Vector2(1.41209, 1.37486)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="defence_area"]
+position = Vector2(0, -60)
+shape = SubResource("RectangleShape2D_1b0lp")
+
+[node name="game_over_ui" type="CanvasLayer" parent="."]
+
+[node name="game_over_control" type="Control" parent="game_over_ui"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="game_over_panel" type="Panel" parent="game_over_ui/game_over_control"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bm6js")
+
+[node name="Label" type="Label" parent="game_over_ui/game_over_control/game_over_panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -11.5
+offset_right = 46.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 150
+text = "GAME OVER"
+
+[node name="ui" type="CanvasLayer" parent="."]
+
+[node name="score_label" type="Label" parent="ui"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -394.0
+offset_top = 20.0
+offset_right = -22.0
+offset_bottom = 108.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 64
+text = "Score: 0"
+horizontal_alignment = 2
+
+[node name="passed_label" type="Label" parent="ui"]
+offset_left = 33.0
+offset_top = 22.0
+offset_right = 405.0
+offset_bottom = 110.0
+theme_override_font_sizes/font_size = 64
+text = "Passed: 0"
