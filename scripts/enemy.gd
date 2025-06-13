@@ -28,3 +28,6 @@ func take_damage(damage:int):
 		death.emit()
 		queue_free()
 
+func _on_game_over():
+	print(name, ' enemy dead')
+	queue_free()

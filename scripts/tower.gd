@@ -19,3 +19,7 @@ func  spawn():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func _on_game_over():
+	print('tower dead')
+	queue_free()

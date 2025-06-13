@@ -25,5 +25,5 @@ func _physics_process(delta: float) -> void:
 	global_position += Vector2(speed * delta, 0)
 
 	if position.x > 3000:
-		print('deleting myself', self)
+		print('proj deleting myself', self)
 		queue_free()

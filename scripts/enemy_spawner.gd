@@ -17,3 +17,7 @@ func spawn():
 
 	var t = randf_range(spawn_min, spawn_max)
 	get_tree().create_timer(t).timeout.connect(spawn)
+
+func _on_game_over():
+	print(name, ' enemy spawner dead')
+	queue_free()

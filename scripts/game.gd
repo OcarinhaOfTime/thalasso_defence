@@ -26,7 +26,7 @@ func on_enemy_passed(enemy):
 	passed += 1
 	passed_label.text = 'Passed: ' + str(passed)
 
-	if passed >= 1 and not game_ended:
+	if passed >= 3 and not game_ended:
 		print('the game is over!!!')
 		game_over()
 
@@ -38,11 +38,11 @@ func _process(delta:float):
 
 func game_over():
 	game_ended = true
+	
+	propagate_call('_on_game_over')
 	var tween = create_tween()
 	tween.tween_property(go_control, 'modulate:a', 1, 3).set_ease(Tween.EASE_IN_OUT)
 	await tween.finished
 	print('it is done bozo')
-
-	#go_control.modulate.a = 1.
 
 

@@ -1,0 +1,141 @@
+[gd_scene load_steps=3 format=3 uid="uid://vmihh4b4vtgf"]
+
+[ext_resource type="Texture2D" uid="uid://cyj8ou3ut36th" path="res://textures/background_water.png" id="1_fquab"]
+[ext_resource type="Script" path="res://scripts/intro_ui.gd" id="2_g81ed"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="BackgroundWater" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_fquab")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="intro_ui" type="CanvasLayer" parent="."]
+script = ExtResource("2_g81ed")
+
+[node name="title" type="Label" parent="intro_ui"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.2
+anchor_right = 0.5
+anchor_bottom = 0.2
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_font_sizes/font_size = 100
+text = "THALASSO DEFENCE"
+
+[node name="menu" type="PanelContainer" parent="intro_ui"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -197.008
+offset_top = -174.0
+offset_right = 197.008
+offset_bottom = 174.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="intro_ui/menu"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="intro_ui/menu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="play_button" type="Button" parent="intro_ui/menu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Play"
+
+[node name="options_button" type="Button" parent="intro_ui/menu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Options
+"
+
+[node name="quit_button" type="Button" parent="intro_ui/menu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Quit"
+
+[node name="options" type="PanelContainer" parent="intro_ui"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -197.0
+offset_top = -174.0
+offset_right = 197.0
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="intro_ui/options"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="intro_ui/options/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="GridContainer" type="GridContainer" parent="intro_ui/options/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="audio_label" type="Label" parent="intro_ui/options/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Volume"
+
+[node name="volume_slider" type="HSlider" parent="intro_ui/options/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 100.0
+
+[node name="difficulty_label" type="Label" parent="intro_ui/options/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Difficulty"
+
+[node name="difficulty_slider" type="HSlider" parent="intro_ui/options/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 100.0
+
+[node name="password_label" type="Label" parent="intro_ui/options/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Password"
+
+[node name="password_input" type="TextEdit" parent="intro_ui/options/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+placeholder_text = "password..."
+
+[node name="options_back_button" type="Button" parent="intro_ui/options/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Back"
